@@ -1,8 +1,13 @@
 import "./HomePage.css";
-//import InvoiceCard from "../components/InvoiceCard";
+import Modal from "../components/Modal";
+import InvoiceCard from "../components/InvoiceCard";
 import NoInvoice from "../components/NoInvoice";
+import Form from "../components/Form";
+import { useState } from "react";
 
-function HomePage() {
+function HomePage({ invoices }) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <header>
       <div className="homepage">
@@ -14,7 +19,7 @@ function HomePage() {
           <span>Filter</span>
           <img src="/images/icon-check.svg" alt="icon-check" />
         </div>
-        <div className="homepage-btn">
+        <div onClick={() => setShowModal(true)} className="homepage-btn">
           <span>
             <img src="/images/icon-plus.svg" alt="icon-plus" />
           </span>
@@ -23,9 +28,28 @@ function HomePage() {
         </div>
       </div>
       <div className="invoice-card-list">
-        {/* <InvoiceCard /> */}
-        <NoInvoice />
+        {invoices.length ? (
+          invoices.map((invoice) => {
+            return (
+              <InvoiceCard
+                key={invoice.id}
+                id={invoice.id}
+                paymentDue={invoice.paymentDue}
+                clientName={invoice.clientName}
+                status={invoice.status}
+                total={invoice.total}
+              />
+            );
+          })
+        ) : (
+          <NoInvoice />
+        )}
       </div>
+      {showModal && (
+        <Modal showModal={setShowModal} modalTitle="Filter by category">
+          <Form />
+        </Modal>
+      )}
     </header>
   );
 }

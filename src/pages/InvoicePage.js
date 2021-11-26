@@ -1,90 +1,120 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import ItemList from "../components/ItemList";
 import ViewInvoiceButtons from "../components/ViewInvoiceButtons";
+import Modal from "../components/Modal";
+import Form from "../components/Form";
 import "./InvoicePage.css";
-function InvoicePage() {
+function InvoicePage({ fetchInvoice, deleteInvoice, setToPaid }) {
+  const { id } = useParams();
+
+  const [invoice, setInvoice] = useState(null);
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setInvoice(fetchInvoice(id));
+  }, [id, fetchInvoice]);
+
+  console.log(invoice);
+
   return (
     <>
-      <div className="invoice-page">
-        <div className="go-back">
-          <img src="/images/icon-arrow-left.svg" alt="icon-left" />
-          <a href="#">go back</a>
-        </div>
-        <div className="invoice-status">
-          <span>Status</span>
-          <div className="invoice-card-status status">
-            <span></span>
-            <span id="invoiceStatus">Paid</span>
-          </div>
-        </div>
-        <div className="invoice-info">
-          <div className="invoice-info-header">
-            <div className="id-desc">
-              <div className="invoice-card-id">
-                <p>
-                  #<span>RT3080</span>
-                </p>
-              </div>
-              <p className="description" id="description">
-                Graphic Design
-              </p>
+      {invoice ? (
+        <>
+          <div className="invoice-page">
+            <div className="go-back">
+              <img src="/images/icon-arrow-left.svg" alt="icon-left" />
+              <Link to="/">go back</Link>
             </div>
-            <div className="sender">
-              <p id="senderStreet">19 Union Terrace</p>
-              <p id="senderCity">London</p>
-              <p id="senderPostCode">E1 3EZ</p>
-              <p id="senderCountry">United Kingdom</p>
-            </div>
-          </div>
-          <div className="invoice-info-body">
-            <div className="date-due">
-              <p>Invoice Date</p>
-              <span id="createdAt">21 Aug 2021</span>
-              <p>Payment Due</p>
-              <span id="paymentDue">20 Sep 2021</span>
-            </div>
-            <div className="client">
-              <p>Bill To</p>
-              <span id="clientName">Alex Grim</span>
-              <p id="clientStreet">84 Church Way</p>
-              <p id="clientCity">Bradford</p>
-              <p id="clientPostCode">BD1 9PB</p>
-              <p id="clientCountry">United Kingdom</p>
-            </div>
-            <div className="sent-to">
-              <p>Sent to</p>
-              <span>alexgrim@mail.com</span>
-            </div>
-          </div>
-          <div className="invoice-info-footer">
-            <div className="labels">
-              <p>Item Name</p>
-              <p>QTY.</p>
-              <p>Price</p>
-              <p>Total</p>
-            </div>
-            <div className="design">
-              <div className="banner-design">
-                <p>Banner Design</p>
-                <p className="banner-quantity">1</p>
-                <p className="design-x">x</p>
-                <p className="banner-price">£ 156.00</p>
-                <p className="banner-total">£ 156.00</p>
-              </div>
-              <div className="email-design">
-                <p>Email Design</p>
-                <p className="email-quantity">2</p>
-                <p className="design-x">x</p>
-                <p className="email-price">£ 200.00</p>
-                <p className="email-total">£ 400.00</p>
+            <div className="invoice-status">
+              <span>Status</span>
+              <div className="invoice-card-status status">
+                <span></span>
+                <span id="invoiceStatus">{invoice.status}</span>
               </div>
             </div>
-            <div className="grand-total">
-              <span>Grand Total</span>
-              <span>£ 556.00</span>
+            <div className="invoice-info">
+              <div className="invoice-info-header">
+                <div className="id-desc">
+                  <div className="invoice-card-id">
+                    <p>
+                      #<span>{invoice.id}</span>
+                    </p>
+                  </div>
+                  <p className="description" id="description">
+                    {invoice.description}
+                  </p>
+                </div>
+                <div className="sender">
+                  <p id="senderStreet">{invoice.senderAddress.street}</p>
+                  <p id="senderCity">{invoice.senderAddress.city}</p>
+                  <p id="senderPostCode">{invoice.senderAddress.postCode}</p>
+                  <p id="senderCountry">{invoice.senderAddress.country}</p>
+                </div>
+              </div>
+              <div className="invoice-info-body">
+                <div className="date-due">
+                  <p>Invoice Date</p>
+                  <span id="createdAt">{invoice.createdAt}</span>
+                  <p>Payment Due</p>
+                  <span id="paymentDue">{invoice.paymentDue}</span>
+                </div>
+                <div className="client">
+                  <p>Bill To</p>
+                  <span id="clientName">{invoice.clientName}</span>
+                  <p id="clientStreet">{invoice.clientAddress.street}</p>
+                  <p id="clientCity">{invoice.clientAddress.city}</p>
+                  <p id="clientPostCode">{invoice.clientAddress.postCode}</p>
+                  <p id="clientCountry">{invoice.clientAddress.country}</p>
+                </div>
+                <div className="sent-to">
+                  <p>Sent to</p>
+                  <span>{invoice.clientEmail}</span>
+                </div>
+              </div>
+              <div className="invoice-info-footer">
+                <div className="labels">
+                  <p>Item Name</p>
+                  <p>QTY.</p>
+                  <p>Price</p>
+                  <p>Total</p>
+                </div>
+                <div className="design">
+                  {invoice.items.map((item) => (
+                    <div key={item.name} className="banner-design">
+                      <p>{item.name}</p>
+                      <p className="banner-quantity">{item.name}</p>
+                      <p className="design-x">{item.quantity}</p>
+                      <p className="banner-price">£ {item.price}</p>
+                      <p className="banner-total">£ {item.total}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="grand-total">
+                  <span>Grand Total</span>
+                  <span>£ {invoice.total}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <ViewInvoiceButtons />
+          <ViewInvoiceButtons
+            setShowModal={setShowModal}
+            deleteInvoice={deleteInvoice}
+            setToPaid={setToPaid}
+            status={invoice.status}
+            id={invoice.id}
+          />
+          {showModal && (
+            <Modal showModal={setShowModal}>
+              <Form formId={invoice.id} />
+            </Modal>
+          )}
+        </>
+      ) : (
+        "loading..."
+      )}
     </>
   );
 }

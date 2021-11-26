@@ -1,37 +1,55 @@
+import { useDebugValue, useState } from "react";
 import "./Form.css";
 
-function Form() {
+function Form({ formId }) {
+
+    const [senderStreet, setSenderStreet] = useState('');
+    const [senderCity, setSenderCity] = useState('');
+    const [senderPostCode, setSenderPostCode] = useState('');
+    const [senderCountry, setSenderCountry] = useState('');
+    const [clientStreet, setClientStreet] = useState('');
+    const [clientCity, setClientCity] = useState('');
+    const [clientPostCode, setClientPostCode] = useState('');
+    const [clientCountry, setClientCountry] = useState('');
+    const [clientName, setClientName] = useState('');
+    const [clientMail, setClientMail] = useState('');
+    const [date, setDate] = useState('');
+    const [terms, setTerms] = useState('');
+    const [description, setDescription] = useState('');
+    const [items, setItems] = useState([]);
+
     return (
         <div className="form">
-            <div className="go-back">
-                <img src="/images/icon-arrow-left.svg" alt="icon-left" />
-                <a href="#">go back</a>
-            </div>
-            <p className="form-edit">Edit <small>#</small><small>XM9141</small></p>
+            <p className="form-edit">
+                {
+                    formId ? <span>Edit <small>#</small><small>{formId}</small></span> : 'New Invoice'
+                }
+
+            </p>
             <p className="bill-from">Bill From</p>
             <div className="sender">
                 <div className="street-address">
                     <span>Street Address</span>
                     <div>
-                        <input type="text" placeholder="19 Union Terrace" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="city">
                     <span>City</span>
                     <div>
-                        <input type="text" placeholder="London" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="postcode">
                     <span>Post Code</span>
                     <div>
-                        <input type="text" placeholder="E1 3EZ" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="country">
                     <span>Country</span>
                     <div>
-                        <input type="text" placeholder="United Kingdom" />
+                        <input type="text" />
                     </div>
                 </div>
             </div>
@@ -40,37 +58,37 @@ function Form() {
                 <div className="name">
                     <span>Client’s Name</span>
                     <div>
-                        <input type="text" placeholder="Alex Grim" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="email">
                     <span>Client’s Email</span>
                     <div>
-                        <input type="text" placeholder="alexgrim@mail.com" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="street-address">
                     <span>Street Address</span>
                     <div>
-                        <input type="text" placeholder="84 Church Way" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="city">
                     <span>City</span>
                     <div>
-                        <input type="text" placeholder="Bradford" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="postcode">
                     <span>Post Code</span>
                     <div>
-                        <input type="text" placeholder="BD1 9PB" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="country">
                     <span>Country</span>
                     <div>
-                        <input type="text" placeholder="United Kingdom" />
+                        <input type="text" />
                     </div>
                 </div>
             </div>
@@ -78,19 +96,19 @@ function Form() {
                 <div className="date">
                     <span>Invoice Date</span>
                     <div>
-                        <input type="text" placeholder="21 Aug 2021" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="terms">
                     <span>Payment Terms</span>
                     <div>
-                        <input type="text" placeholder="Net 30 Days" />
+                        <input type="text" />
                     </div>
                 </div>
                 <div className="description">
                     <span>Project Description</span>
                     <div>
-                        <input type="text" placeholder="Graphic Design" />
+                        <input type="text" />
                     </div>
                 </div>
             </div>

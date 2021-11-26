@@ -1,28 +1,28 @@
 import "./InvoiceCard.css"
+import { Link } from "react-router-dom";
 
-
-const InvoiceCard = () => {
+const InvoiceCard = (props) => {
     return (
-        <div className="invoice-card">
+        <Link to={`/invoice/${props.id}`} className="invoice-card">
             <div className="invoice-card-id pb-24 text-start">
-                <p>#<span id="profileID">RT3080</span></p>
+                <p>#<span id="profileID">{props.id}</span></p>
             </div>
-            <p className="invoice-card-name pb-24 text-end" id="profileName">Jensen Huang</p>
+            <p className="invoice-card-name pb-24 text-end" id="profileName">{props.clientName}</p>
             <div className="invoice-card-due text-start">
-                <p>Due <span id="profileDue">19 Aug 2021</span></p>
+                <p>Due <span id="profileDue">{props.paymentDue}</span></p>
             </div>
 
             <div className="invoice-card-total text-start">
-                <p>£ <span id="profileTotal">1,800.90</span></p>
+                <p>£ <span id="profileTotal">{props.total}</span></p>
             </div>
-            <div className="invoice-card-status status">
-                <span></span><span id="invoiceStatus">Paid</span>
+            <div className={`invoice-card-status ${props.status}`}>
+                <span></span><span id="invoiceStatus">{props.status}</span>
             </div>
             <div className="invoice-card-arrow d-none">
                 <img src="/images/icon-arrow-right.svg" alt="icon-arrow-right" />
             </div>
 
-        </div>
+        </Link>
     );
 }
 
