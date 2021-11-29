@@ -83,3 +83,70 @@
 .form .data {
   padding-bottom: 42px;
 }
+
+.item-list {
+  text-align: start;
+  padding: 0 24px;
+  background-color: var(--form-bg);
+  padding-bottom: 24px;
+  max-width: 617px;
+  margin: 0 auto;
+}
+.item-list p {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: #777f98;
+}
+
+.item {
+  margin-bottom: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.item span {
+  color: var(--form-headings-color);
+  display: block;
+  margin-bottom: 10px;
+  text-align: start;
+}
+.item input {
+  width: 100%;
+  height: 48px;
+  padding-left: 20px;
+  outline: none;
+}
+.item .item-name {
+  width: 100%;
+  flex: 0 0 100%;
+  margin-bottom: 24px;
+}
+
+.item .item-quantity {
+  flex: 0 0 calc(25% - 48px / 4);
+  width: calc(25% - 48px / 4);
+}
+.item .item-price {
+  flex: 0 0 calc(25% - 48px / 4);
+  width: calc(25% - 48px / 4);
+}
+.item .item-total {
+  flex: 0 0 calc(25% - 48px / 4);
+  width: calc(25% - 48px / 4);
+}
+.item .item-delete {
+  flex: 0 0 calc(25% - 48px / 4);
+  width: calc(25% - 48px / 4);
+}
+.new-item {
+  width: 327px;
+  height: 48px;
+  color: var(--light-color);
+  font-weight: bold;
+  background-color: var(--new-item-bg);
+  border-color: transparent;
+  border-radius: 24px;
+}
