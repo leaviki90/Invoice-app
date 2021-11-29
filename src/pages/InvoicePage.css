@@ -38,8 +38,7 @@ a.go-back span {
   grid-row-end: 4;
   font-weight: bold;
   border-radius: 6px;
-  padding: 13px 29px 12px 30px;
-  width: 104px;
+  width: -webkit-fill-available;
   height: 40px;
   margin-left: auto;
 }
@@ -50,12 +49,33 @@ a.go-back span {
   display: inline-block;
   margin-right: 8px;
 }
-.status {
+.invoice-card-status.paid {
   background-color: var(--paid-color-bg);
   color: var(--paid-color);
 }
-.status span:first-of-type {
+.invoice-card-status.pending {
+  background-color: var(--pending-color-bg);
+  color: var(--pending-color);
+}
+.invoice-card-status.draft {
+  background-color: var(--draft-color-bg);
+  color: var(--draft-color);
+}
+
+.invoice-card-status span:first-of-type {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.invoice-card-status.paid span:first-of-type {
   background-color: var(--paid-color);
+}
+.invoice-card-status.pending span:first-of-type {
+  background-color: var(--pending-color);
+}
+.invoice-card-status.draft span:first-of-type {
+  background-color: var(--draft-color);
 }
 .invoice-info {
   padding: 24px;

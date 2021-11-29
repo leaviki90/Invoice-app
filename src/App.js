@@ -22,12 +22,13 @@ const data = require("./data/data.json");
 
 function App() {
   const [invoices, setInvoices] = useState([]);
-  const [theme, setTheme] = useState('');
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
     if (isTest) {
-      const invoicesData = JSON.parse(localStorage.getItem("invoicesData")) || data;
-      const invoicesTheme = localStorage.getItem("invoicesTheme") || 'light'
+      const invoicesData =
+        JSON.parse(localStorage.getItem("invoicesData")) || data;
+      const invoicesTheme = localStorage.getItem("invoicesTheme") || "light";
       setInvoices(invoicesData);
       setTheme(invoicesTheme);
     }
@@ -41,9 +42,9 @@ function App() {
 
   useEffect(() => {
     if (isTest) {
-      localStorage.setItem("invoicesTheme", theme || 'light');
+      localStorage.setItem("invoicesTheme", theme || "light");
     }
-  }, );
+  });
 
   const deleteInvoice = (id) => {
     const changedInvoices = invoices.filter((invoice) => invoice.id !== id);
@@ -69,16 +70,10 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <Router>
-        <Sidebar 
-          theme={theme}
-          setTheme={setTheme}
-        />
+        <Sidebar theme={theme} setTheme={setTheme} />
         <Switch>
           <Route exact path="/">
-            <HomePage 
-              invoices={invoices}
-              setInvoices={setInvoices}
-            />
+            <HomePage invoices={invoices} setInvoices={setInvoices} />
           </Route>
           <Route exact path="/invoice/:id">
             <InvoicePage

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import ItemList from "../components/ItemList";
 import ViewInvoiceButtons from "../components/ViewInvoiceButtons";
 import Modal from "../components/Modal";
 import Form from "../components/Form";
@@ -29,7 +30,7 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setInvoices, setToPaid }) {
             </Link>
             <div className="invoice-status">
               <span>Status</span>
-              <div className="invoice-card-status status">
+              <div className={`invoice-card-status ${invoice.status}`}>
                 <span></span>
                 <span id="invoiceStatus">{invoice.status}</span>
               </div>
