@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import ItemList from "../components/ItemList";
 import ViewInvoiceButtons from "../components/ViewInvoiceButtons";
 import Modal from "../components/Modal";
 import Form from "../components/Form";
@@ -108,10 +107,10 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setInvoices, setToPaid }) {
           />
           {showModal && (
             <Modal showModal={setShowModal}>
-              <Form 
-              formId={invoice.id}
-              setInvoices={setInvoices}
-              currentInvoice={invoice}
+              <Form
+                formId={invoice.id}
+                setInvoices={setInvoices}
+                currentInvoice={invoice}
               />
             </Modal>
           )}
