@@ -50,36 +50,36 @@
   padding-left: 20px;
   outline: none;
 }
-.sender,
-.client {
+.form .sender,
+.form .client {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 16px;
 }
-.street-address,
-.city,
-.postcode,
-.country,
-.name,
-.email,
-.date,
-.terms,
-.description {
+.form .street-address,
+.form .city,
+.form .postcode,
+.form .country,
+.form .name,
+.form .email,
+.form .date,
+.form .terms,
+.form .description {
   margin-bottom: 24px;
 }
-.street-address,
-.country,
-.name,
-.email {
+.form .street-address,
+.form .country,
+.form .name,
+.form .email {
   flex: 0 0 100%;
   width: 100%;
 }
-.city,
-.postcode {
+.form .city,
+.form .postcode {
   flex: 0 0 calc(50% - 23px / 2);
   width: calc(50% - 23px / 2);
 }
-.data {
+.form .data {
   padding-bottom: 42px;
 }

@@ -102,3 +102,6 @@ body {
   letter-spacing: -0.25px;
   color: var(--body-color);
 }
+.position-relative {
+  position: relative;
+}

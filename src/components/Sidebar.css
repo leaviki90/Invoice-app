@@ -31,6 +31,7 @@
 }
 .sidebar-toggle-theme {
   padding: 26px 24px;
+  cursor: pointer;
 }
 .sidebar-avatar-image {
   padding: 20px 24px;

@@ -6,7 +6,7 @@ import ViewInvoiceButtons from "../components/ViewInvoiceButtons";
 import Modal from "../components/Modal";
 import Form from "../components/Form";
 import "./InvoicePage.css";
-function InvoicePage({ fetchInvoice, deleteInvoice, setToPaid }) {
+function InvoicePage({ fetchInvoice, deleteInvoice, setInvoices, setToPaid }) {
   const { id } = useParams();
 
   const [invoice, setInvoice] = useState(null);
@@ -20,14 +20,14 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setToPaid }) {
   console.log(invoice);
 
   return (
-    <>
+    <div>
       {invoice ? (
         <>
           <div className="invoice-page">
-            <div className="go-back">
+            <Link to="/" className="go-back">
               <img src="/images/icon-arrow-left.svg" alt="icon-left" />
-              <Link to="/">go back</Link>
-            </div>
+              <span>go back</span>
+            </Link>
             <div className="invoice-status">
               <span>Status</span>
               <div className="invoice-card-status status">
@@ -85,8 +85,8 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setToPaid }) {
                   {invoice.items.map((item) => (
                     <div key={item.name} className="banner-design">
                       <p>{item.name}</p>
-                      <p className="banner-quantity">{item.name}</p>
-                      <p className="design-x">{item.quantity}</p>
+                      <p className="banner-quantity">{item.quantity}</p>
+                      <p className="design-x">x</p>
                       <p className="banner-price">£ {item.price}</p>
                       <p className="banner-total">£ {item.total}</p>
                     </div>
@@ -108,14 +108,18 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setToPaid }) {
           />
           {showModal && (
             <Modal showModal={setShowModal}>
-              <Form formId={invoice.id} />
+              <Form 
+              formId={invoice.id}
+              setInvoices={setInvoices}
+              currentInvoice={invoice}
+              />
             </Modal>
           )}
         </>
       ) : (
         "loading..."
       )}
-    </>
+    </div>
   );
 }
 

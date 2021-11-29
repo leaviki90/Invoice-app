@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import InvoicePage from "./pages/InvoicePage";
 import HomePage from "./pages/HomePage";
-import Form from "./components/Form";
-import ItemList from "./components/ItemList";
-import Footer from "./components/Footer";
 
 // Test IF LocalStorage is accessible
 function isTest() {
@@ -24,8 +21,29 @@ function isTest() {
 const data = require("./data/data.json");
 
 function App() {
-  const [invoices, setInvoices] = useState(data);
-  console.log({ invoices });
+  const [invoices, setInvoices] = useState([]);
+  const [theme, setTheme] = useState('');
+
+  useEffect(() => {
+    if (isTest) {
+      const invoicesData = JSON.parse(localStorage.getItem("invoicesData")) || data;
+      const invoicesTheme = localStorage.getItem("invoicesTheme") || 'light'
+      setInvoices(invoicesData);
+      setTheme(invoicesTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTest) {
+      localStorage.setItem("invoicesData", JSON.stringify(invoices));
+    }
+  });
+
+  useEffect(() => {
+    if (isTest) {
+      localStorage.setItem("invoicesTheme", theme || 'light');
+    }
+  }, );
 
   const deleteInvoice = (id) => {
     const changedInvoices = invoices.filter((invoice) => invoice.id !== id);
@@ -49,18 +67,25 @@ function App() {
     invoices?.find((invoice) => invoice.id === id) || null;
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <Router>
-        <Sidebar />
+        <Sidebar 
+          theme={theme}
+          setTheme={setTheme}
+        />
         <Switch>
           <Route exact path="/">
-            <HomePage invoices={invoices} />
+            <HomePage 
+              invoices={invoices}
+              setInvoices={setInvoices}
+            />
           </Route>
           <Route exact path="/invoice/:id">
             <InvoicePage
               fetchInvoice={fetchInvoice}
               deleteInvoice={deleteInvoice}
               setToPaid={setToPaid}
+              setInvoices={setInvoices}
             />
           </Route>
         </Switch>
