@@ -3,6 +3,7 @@
   padding-top: 104px;
   max-width: 730px;
   padding-bottom: 56px;
+  background-color: var(--page-bg);
 }
 a.go-back {
   display: flex;
@@ -10,6 +11,7 @@ a.go-back {
   align-items: center;
   padding: 0 24px;
   margin-bottom: 32px;
+  text-decoration: none;
 }
 a.go-back span {
   color: var(--title-color);
@@ -107,7 +109,9 @@ a.go-back span {
 }
 .invoice-info .sender {
   text-align: start;
+  color: var(--light-color);
 }
+
 .invoice-info .sender p {
   font-size: 11px;
   line-height: 18px;

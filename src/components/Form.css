@@ -84,6 +84,18 @@
   padding-bottom: 42px;
 }
 
+.bottom-separator {
+  position: relative;
+  height: 64px;
+  width: calc(100% + 48px);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.0001) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  left: -24px;
+}
+
 .item-list {
   text-align: start;
   padding: 0 24px;

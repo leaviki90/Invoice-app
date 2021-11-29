@@ -16,8 +16,6 @@ function InvoicePage({ fetchInvoice, deleteInvoice, setInvoices, setToPaid }) {
     setInvoice(fetchInvoice(id));
   }, [id, fetchInvoice]);
 
-  console.log(invoice);
-
   return (
     <div>
       {invoice ? (

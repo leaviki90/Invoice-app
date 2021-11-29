@@ -29,6 +29,7 @@
   --taraba-color: #888eb0;
   --with-buttons-bg: #ffffff;
   --cancel-btn-bg: #f9fafe;
+  --page-bg: #f2f2f2;
 }
 .App.dark {
   --body-color: #dfe3fa;
@@ -58,6 +59,7 @@
   --taraba-color: #777f98;
   --with-buttons-bg: #1e2139;
   --cancel-btn-bg: #252945;
+  --page-bg: #141625;
 }
 html {
   box-sizing: border-box;

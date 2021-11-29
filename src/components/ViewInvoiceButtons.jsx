@@ -3,7 +3,6 @@ import { useHistory } from "react-router";
 
 function ViewInvoiceButtons({ setShowModal, deleteInvoice, setToPaid, status, id }) {
     const history = useHistory()
-    console.log(id);
 
     return (
         <div className="view-invoice-buttons">

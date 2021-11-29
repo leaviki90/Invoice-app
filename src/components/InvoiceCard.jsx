@@ -1,5 +1,6 @@
 import "./InvoiceCard.css"
 import { Link } from "react-router-dom";
+import { formatCurrency } from "../helpers/helpers";
 
 const InvoiceCard = (props) => {
     return (
@@ -13,7 +14,7 @@ const InvoiceCard = (props) => {
             </div>
 
             <div className="invoice-card-total text-start">
-                <p>£ <span id="profileTotal">{props.total}</span></p>
+                <p>£ <span id="profileTotal">{formatCurrency(props.total)}</span></p>
             </div>
             <div className={`invoice-card-status ${props.status}`}>
                 <span></span><span id="invoiceStatus">{props.status}</span>

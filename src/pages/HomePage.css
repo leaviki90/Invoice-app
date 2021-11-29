@@ -2,6 +2,8 @@ header {
   padding: 0 24px;
   max-width: 730px;
   margin: 0 auto;
+  background-color: var(--page-bg);
+  padding-bottom: 105px;
 }
 .homepage {
   display: flex;

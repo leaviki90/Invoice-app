@@ -12,20 +12,24 @@
   font-weight: 700;
   border-color: transparent;
   margin: 0 4px;
+  cursor: pointer;
 }
 .view-invoice-buttons .edit-btn {
   width: 73px;
   height: 48px;
   background-color: var(--edit-btn-bg);
   color: var(--edit-btn-color);
+  cursor: pointer;
 }
 .view-invoice-buttons .delete-btn {
   width: 89px;
   height: 48px;
   background-color: #ec5757;
+  cursor: pointer;
 }
 .view-invoice-buttons .mark-btn {
   width: 149px;
   height: 48px;
   background-color: #7c5dfa;
+  cursor: pointer;
 }

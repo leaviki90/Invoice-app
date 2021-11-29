@@ -48,7 +48,6 @@ function App() {
 
   const deleteInvoice = (id) => {
     const changedInvoices = invoices.filter((invoice) => invoice.id !== id);
-    console.log(changedInvoices);
     setInvoices(changedInvoices);
   };
 
@@ -60,7 +59,7 @@ function App() {
         return invoice;
       }
     });
-    console.log(changedInvoices);
+
     setInvoices(changedInvoices);
   };
 

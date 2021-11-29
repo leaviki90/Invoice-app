@@ -6,7 +6,7 @@ import "./Form.css";
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const digits = "0123456789";
 
-function Form({ formId, setInvoices, currentInvoice=null }) {
+function Form({ formId, setInvoices, currentInvoice = null }) {
 
     const [senderStreet, setSenderStreet] = useState(currentInvoice ? currentInvoice.senderAddress.street : '');
     const [senderCity, setSenderCity] = useState(currentInvoice ? currentInvoice.senderAddress.city : '');
@@ -85,11 +85,10 @@ function Form({ formId, setInvoices, currentInvoice=null }) {
             "total": items.reduce((sum, currentValue) => sum + currentValue.total, 0)
         }
 
-        console.log(newEntry);
 
-        if(currentInvoice) {
+        if (currentInvoice) {
             setInvoices(curr => curr.map((item) => {
-                if(item.id === currentInvoice.id) {
+                if (item.id === currentInvoice.id) {
                     return newEntry;
                 } else {
                     return item;
@@ -98,7 +97,7 @@ function Form({ formId, setInvoices, currentInvoice=null }) {
         } else {
             setInvoices(curr => [...curr, newEntry])
         }
-        
+
     }
 
     return (
@@ -306,6 +305,7 @@ function Form({ formId, setInvoices, currentInvoice=null }) {
                 ))}
                 <button type="button" onClick={addItem} className="new-item">+ Add New Item</button>
             </div>
+            <div className="bottom-separator"></div>
             <button>Submit</button>
         </form>
     );
